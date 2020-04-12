@@ -50,10 +50,11 @@ public class ListaArray<T> implements Lista<T> {
 		if (index < 0 || index >= tamanho) {
 			throw new IndexOutOfBoundsException(index);
 		}
+		tamanho--;
 		for (int i = index; i < tamanho; i++) {
 			valores[i] = valores[i + 1];
 		}
-		tamanho--;
+		valores[tamanho] = null;
 	}
 
 	@Override
