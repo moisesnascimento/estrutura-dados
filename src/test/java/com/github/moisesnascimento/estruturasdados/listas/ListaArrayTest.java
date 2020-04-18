@@ -179,4 +179,56 @@ public class ListaArrayTest {
 		assertEquals(-1, lista.recuperarIndex("teste8"));
 
 	}
+	
+	@Test
+	public void verificarSeElementoFoiAdicionadoNoIndexEspecifico() {
+		ListaArray<String> lista = new ListaArray<>(4);
+		lista.inserirElemento(3,"teste1");
+		lista.inserirElemento(2,"teste2");
+		lista.inserirElemento(1,"teste3");
+		lista.inserirElemento(0,"teste4");
+		
+		assertEquals("teste4", lista.recuperar(0));
+	}
+	
+	@Test
+	public void inserirElementoDeveRetornarIndiceIndisponivelSeIndexDiferenteNull() {
+		ListaArray<String> lista = new ListaArray<>(4);
+		lista.adicionar("teste1");
+		lista.adicionar("teste2");
+		lista.adicionar("teste3");
+		lista.adicionar("teste4");
+
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			lista.inserirElemento(4, "teste5");
+			;
+		});
+	}
+	
+	@Test
+	public void inserirElementoDeveRetornarListaSeIndexDiferenteNull() {
+		ListaArray<String> lista = new ListaArray<>(4);
+		lista.adicionar("teste1");
+		lista.adicionar("teste2");
+		lista.adicionar("teste3");
+		lista.adicionar("teste4");
+
+		assertThrows(IllegalStateException.class, () -> {
+			lista.inserirElemento(0, "teste5");
+			;
+		});
+	}
+	
+	@Test
+	public void EstaVaziaDeveRetornarTrueSeTamanhoIgualZero() {
+		ListaArray<String> lista = new ListaArray<>(4);
+		assertTrue(lista.estaVazia());
+	}
+	
+	@Test
+	public void EstaVaziaDeveRetornarFalseSeTamanhoDiferenteZero() {
+		ListaArray<String> lista = new ListaArray<>(4);
+		lista.adicionar("teste1");
+		assertFalse(lista.estaVazia());
+	}
 }
