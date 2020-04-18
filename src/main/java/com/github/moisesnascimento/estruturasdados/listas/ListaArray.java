@@ -80,4 +80,30 @@ public class ListaArray<T> implements Lista<T> {
 		return -1;
 	}
 
+	@Override
+	public void inserirElemento(int index, T valor) {
+		if (index < 0 || index >= valores.length) {
+			throw new IndexOutOfBoundsException(index);
+		}
+		if(valores[index] != null) {
+			throw new IllegalStateException("Indice indisponivel");
+		}
+		valores[index] = valor;
+	}
+
+	@Override
+	public boolean estaVazia() {
+		if(tamanho == 0) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void substituirElemento(int index, T valor) {
+		if (tamanho >= valores.length) {
+			throw new IllegalStateException("Lista cheia");
+		}
+		valores[index] = valor;
+	}
 }
