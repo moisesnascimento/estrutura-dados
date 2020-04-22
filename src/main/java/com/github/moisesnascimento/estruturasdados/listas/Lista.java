@@ -18,9 +18,8 @@ public interface Lista<T> {
 	
 	public int getTamanho();
 	
-	public void inserirElemento(int index, T valor);
+	public void adicionar(int index, T valor);
 	
 	public boolean estaVazia();
 	
-	public void substituirElemento(int index, T valor);
 }

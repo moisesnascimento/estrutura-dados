@@ -7,24 +7,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-public class ListaArrayTest {
+public class ListaLigadaTest {
 
 	@Test
 	public void quandoListaCriadaTamanhoDeveSerZero() {
-		ListaArray<String> lista = new ListaArray<>(5);
+		ListaLigada<String> lista = new ListaLigada<>();
 		assertEquals(0, lista.getTamanho());
 	}
 
 	@Test
 	public void quandoAdicionaElementoTamanhoDeveIncrementarEmUm() {
-		ListaArray<String> lista = new ListaArray<>(5);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste");
 		assertEquals(1, lista.getTamanho());
 	}
 
 	@Test
 	public void quandoRecuperarPeloIndexDeveTrazerElementoCorreto() {
-		ListaArray<String> lista = new ListaArray<>(5);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
@@ -37,7 +37,7 @@ public class ListaArrayTest {
 
 	@Test
 	public void quandoRecuperarPeloIndexForaLimitesDeveLancarExecao() {
-		ListaArray<String> lista = new ListaArray<>(5);
+		ListaLigada<String> lista = new ListaLigada<>();
 		assertThrows(IndexOutOfBoundsException.class, () -> {
 			lista.recuperar(6);
 		});
@@ -45,7 +45,7 @@ public class ListaArrayTest {
 
 	@Test
 	public void quandoTrocarElementoEleDeveSerTrocado() {
-		ListaArray<String> lista = new ListaArray<>(5);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
@@ -57,7 +57,7 @@ public class ListaArrayTest {
 
 	@Test
 	public void quandoTrocarPeloIndexForaLimitesDeveLancarExecao() {
-		ListaArray<String> lista = new ListaArray<>(5);
+		ListaLigada<String> lista = new ListaLigada<>();
 		assertThrows(IndexOutOfBoundsException.class, () -> {
 			lista.trocar(1, "teste");
 			;
@@ -66,7 +66,7 @@ public class ListaArrayTest {
 
 	@Test
 	public void quandoAdicionarElementoDeveSerAdicionado() {
-		ListaArray<String> lista = new ListaArray<>(5);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
@@ -79,7 +79,7 @@ public class ListaArrayTest {
 
 	@Test
 	public void quandoAdicionarListaCheiaLancaExecao() {
-		ListaArray<String> lista = new ListaArray<>(4);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
@@ -92,8 +92,8 @@ public class ListaArrayTest {
 	}
 
 	@Test
-	public void quandoRemoverElementoPeloValorDeveSerRemovido() {
-		ListaArray<String> lista = new ListaArray<>(4);
+	public void quandoRemoverElementoNoMeioPeloValorDeveSerRemovido() {
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
@@ -103,10 +103,23 @@ public class ListaArrayTest {
 		assertEquals("teste3", lista.recuperar(1));
 		assertEquals("teste4", lista.recuperar(2));
 	}
+	
+	@Test
+	public void quandoRemoverElementoNoInicioPeloValorDeveSerRemovido() {
+		ListaLigada<String> lista = new ListaLigada<>();
+		lista.adicionar("teste1");
+		lista.adicionar("teste2");
+		lista.adicionar("teste3");
+		lista.adicionar("teste4");
+		lista.remover("teste1");
+		assertEquals("teste2", lista.recuperar(0));
+		assertEquals("teste3", lista.recuperar(1));
+		assertEquals("teste4", lista.recuperar(2));
+	}
 
 	@Test
 	public void quandoRemoverElementoPeloIndexDeveSerRemovido() {
-		ListaArray<String> lista = new ListaArray<>(4);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
@@ -119,7 +132,7 @@ public class ListaArrayTest {
 
 	@Test
 	public void quandoRemoverPeloIndexForaLimitesDeveLancarExecao() {
-		ListaArray<String> lista = new ListaArray<>(5);
+		ListaLigada<String> lista = new ListaLigada<>();
 		assertThrows(IndexOutOfBoundsException.class, () -> {
 			lista.remover(2);
 		});
@@ -127,7 +140,7 @@ public class ListaArrayTest {
 
 	@Test
 	public void contemDeveRetornarTrueSeElementoEstaNaLista() {
-		ListaArray<String> lista = new ListaArray<>(4);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
@@ -141,7 +154,7 @@ public class ListaArrayTest {
 
 	@Test
 	public void contemDeveRetornarFalsoSeElementoNaoEstaNaLista() {
-		ListaArray<String> lista = new ListaArray<>(4);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
@@ -155,7 +168,7 @@ public class ListaArrayTest {
 
 	@Test
 	public void recuperarIndexDeveRecuperarIndexDoElemento() {
-		ListaArray<String> lista = new ListaArray<>(4);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar(null);
@@ -168,7 +181,7 @@ public class ListaArrayTest {
 	
 	@Test
 	public void recuperarIndexDeveRetornarMenosUmQuandoElementoNaoEstaNaLista() {
-		ListaArray<String> lista = new ListaArray<>(4);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
@@ -182,7 +195,7 @@ public class ListaArrayTest {
 	
 	@Test
 	public void verificarSeElementoFoiAdicionadoNoIndexEspecifico() {
-		ListaArray<String> lista = new ListaArray<>(4);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
@@ -196,7 +209,7 @@ public class ListaArrayTest {
 	
 	@Test
 	public void quandoAdicionarPeloIndexForaLimitesDeveLancarExecao() {
-		ListaArray<String> lista = new ListaArray<>(5);
+		ListaLigada<String> lista = new ListaLigada<>();
 		assertThrows(IndexOutOfBoundsException.class, () -> {
 			lista.adicionar(2, "teste1");
 		});
@@ -204,7 +217,7 @@ public class ListaArrayTest {
 	
 	@Test
 	public void inserirElementoDeveRetornarIndiceIndisponivelSeIndexDiferenteNull() {
-		ListaArray<String> lista = new ListaArray<>(4);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
@@ -219,13 +232,13 @@ public class ListaArrayTest {
 	
 	@Test
 	public void EstaVaziaDeveRetornarTrueSeTamanhoIgualZero() {
-		ListaArray<String> lista = new ListaArray<>(4);
+		ListaLigada<String> lista = new ListaLigada<>();
 		assertTrue(lista.estaVazia());
 	}
 	
 	@Test
 	public void EstaVaziaDeveRetornarFalseSeTamanhoDiferenteZero() {
-		ListaArray<String> lista = new ListaArray<>(4);
+		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		assertFalse(lista.estaVazia());
 	}
