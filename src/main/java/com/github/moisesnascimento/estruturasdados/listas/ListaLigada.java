@@ -99,13 +99,13 @@ public class ListaLigada<T> implements Lista<T> {
 
 	@Override
 	public void adicionar(int index, T valor) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public boolean estaVazia() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
