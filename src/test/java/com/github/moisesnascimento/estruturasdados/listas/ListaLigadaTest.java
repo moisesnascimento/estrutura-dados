@@ -103,7 +103,7 @@ public class ListaLigadaTest {
 		assertEquals("teste3", lista.recuperar(1));
 		assertEquals("teste4", lista.recuperar(2));
 	}
-	
+
 	@Test
 	public void quandoRemoverElementoNoInicioPeloValorDeveSerRemovido() {
 		ListaLigada<String> lista = new ListaLigada<>();
@@ -124,9 +124,9 @@ public class ListaLigadaTest {
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
 		lista.adicionar("teste4");
-		lista.remover(1);
+		lista.remover(2);
 		assertEquals("teste1", lista.recuperar(0));
-		assertEquals("teste3", lista.recuperar(1));
+		assertEquals("teste2", lista.recuperar(1));
 		assertEquals("teste4", lista.recuperar(2));
 	}
 
@@ -167,18 +167,20 @@ public class ListaLigadaTest {
 	}
 
 	@Test
-	public void recuperarIndexDeveRecuperarIndexDoElemento() {
+	public void recuperarIndexPeloValorDeveRetornarIndexAtual() {
 		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");
 		lista.adicionar("teste2");
-		lista.adicionar(null);
+		lista.adicionar("teste3");
 		lista.adicionar("teste4");
+		lista.adicionar("teste5");
 		assertEquals(0, lista.recuperarIndex("teste1"));
 		assertEquals(1, lista.recuperarIndex("teste2"));
-		assertEquals(2, lista.recuperarIndex(null));
+		assertEquals(2, lista.recuperarIndex("teste3"));
 		assertEquals(3, lista.recuperarIndex("teste4"));
+		assertEquals(4, lista.recuperarIndex("teste5"));
 	}
-	
+
 	@Test
 	public void recuperarIndexDeveRetornarMenosUmQuandoElementoNaoEstaNaLista() {
 		ListaLigada<String> lista = new ListaLigada<>();
@@ -192,7 +194,7 @@ public class ListaLigadaTest {
 		assertEquals(-1, lista.recuperarIndex("teste8"));
 
 	}
-	
+
 	@Test
 	public void verificarSeElementoFoiAdicionadoNoIndexEspecifico() {
 		ListaLigada<String> lista = new ListaLigada<>();
@@ -200,13 +202,13 @@ public class ListaLigadaTest {
 		lista.adicionar("teste2");
 		lista.adicionar("teste3");
 		lista.adicionar(1, "teste4");
-		
+
 		assertEquals("teste1", lista.recuperar(0));
 		assertEquals("teste4", lista.recuperar(1));
 		assertEquals("teste2", lista.recuperar(2));
 		assertEquals("teste3", lista.recuperar(3));
 	}
-	
+
 	@Test
 	public void quandoAdicionarPeloIndexForaLimitesDeveLancarExecao() {
 		ListaLigada<String> lista = new ListaLigada<>();
@@ -214,7 +216,7 @@ public class ListaLigadaTest {
 			lista.adicionar(2, "teste1");
 		});
 	}
-	
+
 	@Test
 	public void inserirElementoDeveRetornarIndiceIndisponivelSeIndexDiferenteNull() {
 		ListaLigada<String> lista = new ListaLigada<>();
@@ -228,14 +230,13 @@ public class ListaLigadaTest {
 			;
 		});
 	}
-	
-	
+
 	@Test
 	public void EstaVaziaDeveRetornarTrueSeTamanhoIgualZero() {
 		ListaLigada<String> lista = new ListaLigada<>();
 		assertTrue(lista.estaVazia());
 	}
-	
+
 	@Test
 	public void EstaVaziaDeveRetornarFalseSeTamanhoDiferenteZero() {
 		ListaLigada<String> lista = new ListaLigada<>();
