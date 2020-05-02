@@ -78,20 +78,6 @@ public class ListaLigadaTest {
 	}
 
 	@Test
-	public void quandoAdicionarListaCheiaLancaExecao() {
-		ListaLigada<String> lista = new ListaLigada<>();
-		lista.adicionar("teste1");
-		lista.adicionar("teste2");
-		lista.adicionar("teste3");
-		lista.adicionar("teste4");
-		assertThrows(IllegalStateException.class, () -> {
-			lista.adicionar("teste5");
-			;
-		});
-
-	}
-
-	@Test
 	public void quandoRemoverElementoNoMeioPeloValorDeveSerRemovido() {
 		ListaLigada<String> lista = new ListaLigada<>();
 		lista.adicionar("teste1");

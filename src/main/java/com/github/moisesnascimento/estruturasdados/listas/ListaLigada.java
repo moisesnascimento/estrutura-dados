@@ -57,29 +57,34 @@ public class ListaLigada<T> implements Lista<T> {
 	}
 
 	@Override
-	//**
-	//erro remover primeiro elemento
+	// **
+	// erro remover primeiro elemento
 	public void remover(T valor) {
+		if (primeiro == null) {
+			return;
+		}
+
 		No<T> anterior = primeiro;
 		No<T> atual = primeiro;
 		if (primeiro.valor.equals(valor)) {
-			atual = atual.proximo;
+			primeiro = primeiro.proximo;
+			return;
 		}
 		while (atual != null && !atual.valor.equals(valor)) {
 			anterior = atual;
 			atual = atual.proximo;
 		}
-		if (atual != null &&atual.valor.equals(valor)) {
+		if (atual != null && atual.valor.equals(valor)) {
 			anterior.proximo = atual.proximo;
 		}
 		tamanho--;
 	}
 
 	@Override
-	//**
-	//erro remover posicao na posicao 0;
+	// **
+	// erro remover posicao na posicao 0;
 	public void remover(int index) {
-		if (index < 0) {
+		if (index < 0 && index >= getTamanho()) {
 			throw new IndexOutOfBoundsException(index);
 		}
 		No<T> anterior = primeiro;
@@ -90,7 +95,7 @@ public class ListaLigada<T> implements Lista<T> {
 			atual = atual.proximo;
 			indexAtual++;
 		}
-		if(index == indexAtual) {
+		if (index == indexAtual) {
 			anterior.proximo = atual.proximo;
 		}
 		this.tamanho--;
@@ -109,8 +114,8 @@ public class ListaLigada<T> implements Lista<T> {
 	}
 
 	@Override
-	//**
-	//somente valores diferentes
+	// **
+	// somente valores diferentes
 	public int recuperarIndex(T valor) {
 		int indexAtual = 0;
 		No<T> atual = primeiro;
@@ -122,18 +127,17 @@ public class ListaLigada<T> implements Lista<T> {
 	}
 
 	@Override
-	//**
+	// **
 	public int getTamanho() {
 		return this.tamanho;
 	}
 
 	@Override
 	public void adicionar(int index, T valor) {
-
 	}
 
 	@Override
-	//**
+	// **
 	public boolean estaVazia() {
 		if (tamanho == 0) {
 			return true;
