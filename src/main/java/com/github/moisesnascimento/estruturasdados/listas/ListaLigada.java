@@ -3,6 +3,7 @@ package com.github.moisesnascimento.estruturasdados.listas;
 public class ListaLigada<T> implements Lista<T> {
 
 	private No<T> primeiro;
+	private int tamanho = 0;
 
 	@Override
 	public T recuperar(int index) {
@@ -52,32 +53,54 @@ public class ListaLigada<T> implements Lista<T> {
 			novo.valor = valor;
 			atual.proximo = novo;
 		}
+		this.tamanho++;
 	}
 
 	@Override
+	//**
+	//erro remover primeiro elemento
 	public void remover(T valor) {
 		No<T> anterior = primeiro;
 		No<T> atual = primeiro;
+		if (primeiro.valor.equals(valor)) {
+			atual = atual.proximo;
+		}
 		while (atual != null && !atual.valor.equals(valor)) {
 			anterior = atual;
 			atual = atual.proximo;
 		}
-		if (atual != null && atual.valor.equals(valor)) {
+		if (atual != null &&atual.valor.equals(valor)) {
 			anterior.proximo = atual.proximo;
 		}
+		tamanho--;
 	}
 
 	@Override
+	//**
+	//erro remover posicao na posicao 0;
 	public void remover(int index) {
-		// TODO Auto-generated method stub
-
+		if (index < 0) {
+			throw new IndexOutOfBoundsException(index);
+		}
+		No<T> anterior = primeiro;
+		No<T> atual = primeiro;
+		int indexAtual = 0;
+		while (indexAtual < index && atual != null) {
+			anterior = atual;
+			atual = atual.proximo;
+			indexAtual++;
+		}
+		if(index == indexAtual) {
+			anterior.proximo = atual.proximo;
+		}
+		this.tamanho--;
 	}
 
 	@Override
 	public boolean contem(T valor) {
 		No<T> atual = primeiro;
-		while(atual != null) {
-			if(atual.valor.equals(valor)) {
+		while (atual != null) {
+			if (atual.valor.equals(valor)) {
 				return true;
 			}
 			atual = atual.proximo;
@@ -86,26 +109,35 @@ public class ListaLigada<T> implements Lista<T> {
 	}
 
 	@Override
+	//**
+	//somente valores diferentes
 	public int recuperarIndex(T valor) {
-
-		return 0;
+		int indexAtual = 0;
+		No<T> atual = primeiro;
+		while (atual != null && !atual.valor.equals(valor)) {
+			atual = atual.proximo;
+			indexAtual++;
+		}
+		return indexAtual;
 	}
 
 	@Override
+	//**
 	public int getTamanho() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.tamanho;
 	}
 
 	@Override
 	public void adicionar(int index, T valor) {
-		
 
 	}
 
 	@Override
+	//**
 	public boolean estaVazia() {
-		
+		if (tamanho == 0) {
+			return true;
+		}
 		return false;
 	}
 
@@ -113,5 +145,4 @@ public class ListaLigada<T> implements Lista<T> {
 		E valor;
 		No<E> proximo;
 	}
-
 }
