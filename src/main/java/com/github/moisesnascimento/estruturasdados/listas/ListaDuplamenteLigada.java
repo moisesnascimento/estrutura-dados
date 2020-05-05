@@ -144,7 +144,7 @@ public class ListaDuplamenteLigada<T> implements Lista<T> {
 		} else if (atual.anterior == null) {
 			primeiro = no;
 			no.proximo = atual;
-			atual.proximo = no;
+			atual.anterior = no;
 		} else {
 			atual.anterior.proximo = no;
 			no.anterior = atual.anterior;
